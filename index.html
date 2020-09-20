@@ -10,7 +10,7 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
     var resultString = '';
     var resultMatch = {'rockscissors': 'win', 'rockpaper': 'loose', 'rockrock': 'draw', 'scissorspaper': 'win', 'scissorsrock': 'loose', 'scissorsscissors': 'draw', 'paperrock': 'win', 'paperscissors': 'loose', 'paperpaper': 'draw'};
-    var selection = playerSelection.toLowerCase() + computerSelection.toLowerCase();
+    var selection = playerSelection + computerSelection;
 
 
     if(resultMatch[selection] == 'draw')
@@ -26,13 +26,16 @@ function game(){
     const times = 5;
     var i = 0;
     do{
-        var playerSelection = prompt('What\'s your choice? (Rock, Paper or Scissors) (type \'exit\' to exit):');
-        if(playerSelection != 'exit'){
+        var playerSelection = prompt('What\'s your choice? (Rock, Paper or Scissors) (type \'exit\' to exit):').toLocaleLowerCase();
+        if(playerSelection != 'exit' && playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors'){
             var computerSelection = computerPlay().toLowerCase();
             alert(playRound(playerSelection, computerSelection));
         }
-        else
+        else if (playerSelection == 'exit')
             alert('bye!');
+        else{
+            alert('Please, type one of the following option: Rock, Paper, Scissors or exit')
+        }
         i++;
     } while(i < times && playerSelection != 'exit')
 }
