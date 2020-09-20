@@ -1,0 +1,43 @@
+
+<body>
+<script> 
+
+function computerPlay(){
+    var computerSelection = ['Rock', 'Paper', 'Scissors'];
+    return computerSelection[Math.floor(Math.random() * Math.floor(3))];
+}
+
+function playRound(playerSelection, computerSelection){
+    var resultString = '';
+    var resultMatch = {'rockscissors': 'win', 'rockpaper': 'loose', 'rockrock': 'draw', 'scissorspaper': 'win', 'scissorsrock': 'loose', 'scissorsscissors': 'draw', 'paperrock': 'win', 'paperscissors': 'loose', 'paperpaper': 'draw'};
+    var selection = playerSelection.toLowerCase() + computerSelection.toLowerCase();
+
+
+    if(resultMatch[selection] == 'draw')
+        resultString = `It\'s a draw! both selection is ${playerSelection}.`;
+    else if (resultMatch[selection] == 'win')
+        resultString = `You win! ${playerSelection} beat ${computerSelection}.`;
+    else
+        resultString = `You loose! ${playerSelection} is beaten by ${computerSelection}.`;
+    return resultString;
+}
+
+function game(){
+    const times = 5;
+    var i = 0;
+    do{
+        var playerSelection = prompt('What\'s your choice? (Rock, Paper or Scissors) (type \'exit\' to exit):');
+        if(playerSelection != 'exit'){
+            var computerSelection = computerPlay().toLowerCase();
+            alert(playRound(playerSelection, computerSelection));
+        }
+        else
+            alert('bye!');
+        i++;
+    } while(i < times && playerSelection != 'exit')
+}
+
+game();
+</script>
+
+</body>
